@@ -1,0 +1,15 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+CHURCH REGISTRATION<br>  
+<a href="{{ path('_a_new_denomination') }}">Add New Denomination</a><br>
+<form action="{{ path('_a_new_church') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+<br>
+
+{% endblock %}
+

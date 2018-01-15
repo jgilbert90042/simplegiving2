@@ -1,0 +1,27 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<table class=messages>
+<tr>
+<td class=messages>
+{% if message.m.sender %}
+From:</td> <td class=messages>{{ message.entity.firstName }}</td></tr>
+{% else %}
+From:</td> <td class=messages>Public User</td></tr>
+{% endif %}
+<tr><td class=messages>Sent:</td><td class=messages>{{ message.m.sent|date() }}</td></tr>
+<tr><td class=messages>Status:</td><td class=messages>{{ message.m.status.name }}</td></tr>
+<tr><td class=messages>Subject: </td><td class=messages>{{ message.m.subject }}</td></tr>
+<tr><td colspan=2 class=messages>Body:<br>
+{{ message.m.body }}</td></tr></table>
+{% if message.m.status.name != 'Deleted' %}
+<a href="{{ path('_message_delete', {'messageId': message.m.id}) }}">Delete</a>
+{% else %}
+<a href="{{ path('_message_restore', {'messageId': message.m.id}) }}">Restore</a>
+{% endif %}
+{% if message.m.sender %}
+| <a href="{{ path('_message_send',
+{'targetId': message.m.sender.id}) }}">Reply</a><br>
+{% endif %}
+<br>
+{% endblock %}

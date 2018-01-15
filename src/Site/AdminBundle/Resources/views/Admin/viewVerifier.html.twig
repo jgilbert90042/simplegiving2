@@ -1,0 +1,54 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<a href="{{ path('_a_vs_list') }}">Verification Specialist List</a><br>
+<br>
+<table class=messages>
+<tr>
+  <td colspan=2 class=messages>{{ verifier.firstName }} {{ verifier.lastName }}</td>
+<tr>
+<tr>
+  <td class=messages>Church</td>
+  <td class=messages>{{ verifier.church.name }}</td>
+</tr>
+<tr>
+  <td class=messages>Position</td>
+  <td class=messages> {{ verifier.position }}</td>
+</tr>
+<tr>
+  <td class=messages>Email</td>
+  <td class=messages> {{ verifier.user.email }}</td>
+</tr>
+<tr>
+  <td class=messages>Phone</td>
+  <td class=messages> {{ verifier.phone }}</td>
+</tr>
+<tr>
+  <td class=messages>Fax</td>
+  <td class=messages> {{ verifier.fax }}</td>
+</tr>
+<tr>
+  <td class=messages>PayPal Email</td>
+  <td class=messages> {{ verifier.PPEmail }}</td>
+</tr>
+<tr>
+  <td class=messages>PayPal Button Code</td>
+  <td class=messages> {{ verifier.PPButton }}</td>
+</tr>
+<tr>
+  <td class=messages>Activated</td>
+  <td class=messages> <a href="{{ path('_a_vs_activate', {'verifierId': verifier.id}) }}">
+{% if verifier.activated %}
+Yes
+{% else %}
+No
+{% endif %}
+</a></td>
+</tr>
+</table>
+<br>
+<a href="{{ path('_message_send', {'targetId': verifier.user.id}) }}">Message</a><br>
+<a href="{{ path('_a_vs_b_list', {'verifierId': verifier.id}) }}">List Beneficiaries</a><br>
+<a href="{{ path('_funds_list', {'targetId': verifier.user.id}) }}">View Donations</a>
+{% endblock %}

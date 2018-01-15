@@ -1,0 +1,19 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<br>
+BENEFICIARIES<br>
+<br>
+{% for searchResult in searchResults %}
+<a href="{{ path('_b_view', {'beneficiaryId': searchResult.beneficiary.id}) }}">
+{{searchResult.beneficiary.firstName}}</a> | 
+<a href="{{ path('_message_send', 
+{'targetId': searchResult.beneficiary.user.id}) }}">Message</a> | 
+{% include "SiteFundingBundle:Funding:donateButtonSmall.html.twig" %}
+{% endfor %}
+<br>
+<br>
+{% endblock %}
+
+

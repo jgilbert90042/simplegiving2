@@ -1,0 +1,30 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<br>
+Donations<br>
+<br>
+<table class=messages>
+  <tr>
+    <th class=messages>Beneficiary</th>
+    <th class=messages>Method</th>
+    <th class=messages>Status</th>
+    <th class=messages>Amount</th>
+    <th class=messages>Initiated</th>
+    <th class=messages>Updated</th>
+  </tr>
+{% for donation in donations %}
+<tr>
+  <td class=messages>{{ donation.beneficiary.firstName}}</td>
+  <td class=messages>{{ donation.method.name }}</td>
+  <td class=messages>{{ donation.status.name }}</td>
+  <td class=messages>{{ donation.amount }}</td>
+  <td class=messages>{{ donation.initiated | date() }} </td>
+  <td class=messages>{{ donation.updated | date() }} </td>
+</tr>
+{% endfor %}
+</table><br>
+<br>
+If a donation you have made does not appear here, please message the <a href="{{ path('_message_public_send_admin') }}">Site Admin</a>.
+{% endblock %}

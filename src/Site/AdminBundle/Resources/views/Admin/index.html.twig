@@ -1,0 +1,17 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<br>
+ADMIN SECTION
+<br>
+<a href="{{ path('_message_list') }}">Inbox</a><br>
+<a href="{{ path('_a_church_list') }}">Church List</a><br>
+<a href="{{ path('_a_vs_list') }}">Verification Specialist List</a><br>
+<a href="{{ path('_a_b_list') }}">Beneficiary List</a><br>
+<a href="{{ path('_a_d_list') }}">Donor List</a><br>
+<a href="{{ path('_funds_list', {'targetId': user.id}) }}">Donation List</a><br>
+<br>
+{% endblock %}
+
+

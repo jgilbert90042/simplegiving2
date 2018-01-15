@@ -1,0 +1,14 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+
+Message to Verification Specialist<br>
+<form action="{{ path('_message_public_send', {'targetId': target.id}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+
+
+{% endblock %}
+

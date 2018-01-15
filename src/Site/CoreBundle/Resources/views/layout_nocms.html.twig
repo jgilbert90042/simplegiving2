@@ -1,0 +1,106 @@
+{% extends  '::base.html.twig' %}
+{% block title %}
+Simple Giving
+{% endblock %}
+
+{% block stylesheets %}
+ <link href="/css/style.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block header %}
+       <div class="main">
+               <table class="main">
+                   <tr>
+                       <td rowspan="2" class="logo"><a href="{{ path('_index') }}"><img alt="Simple Giving Logo" src="/images/logo.jpg"></a></td>
+                       <td class="top_quote">
+                          <strong>James 1:27</strong> - Religion that God our Father accepts as pure and faultless is this: to look after orphans and widows in their distress and to keep oneself from being polluted by the world.
+                       </td>
+                       <td rowspan="2" class="right_top">
+                       <div class="login_nav">
+{% if is_granted("ROLE_USER") %}
+                                       <a href="{{ path('logout') }}">Log out</a><br>
+                                       <a href="{{ path('_message_list') }}">
+                                       {% if unreadMessages %}
+<strong>Inbox ({{ unreadMessages }})</a><br></strong>
+{% else %}
+Inbox</a><br>
+{% endif %}
+<br>
+                                       <span style="font-size:1.1em;"><strong><a href="{{ path('_secure') }}">HOME</a></strong></span>
+
+{% else %}
+                                       <a href="{{ path('login') }}">Log in</a><br><br>
+                                       <a href="{{ path('_public_donor') }}">Donors</a><br>
+                                       <a href="{{ path('_public_beneficiary') }}">Beneficiaries</a><br>
+                                       <a href="{{ path('_public_vs') }}">Verification Specialists</a><br>
+                                       <a href="{{ path('_public_church') }}">Churches</a>
+{% endif %}
+                      </div>
+                      </td>
+                  </tr>
+                   <tr>
+                     <td class="right_bottom">
+                        <a href="{{ path('_business') }}">Business Proposal</a> | <a href="{{ path('_vision') }}">Vision</a> | <a href="{{ path('_contact') }}">Contact</a>
+                      </td>
+                    </tr>
+                  </table>
+                  <table>
+                    <tr>
+                      <td colspan="2" class="content">
+                        <div class="content">
+{% endblock %}
+
+{% block content %}
+Put your content here.
+{% endblock %}
+
+{%block footer %}
+                        </div>
+
+                      </td>
+                      <td class="difference">
+
+
+
+
+
+
+
+<div class="difference">
+<strong>You are the difference</strong>
+<p>One day, an old man was walking along the beach in the early morning and noticed the tide had washed thousands of starfish up on the shore.  Up ahead in the distance he spotted a boy who appeared to be gathering up the starfish, and one by one tossing them back into the ocean.
+
+<p>He approached the boy and asked him why he spent so much energy doing what seemed to be a waste of time.
+
+<p>The boy replied, "If these starfish are left out here like this, they will bake in the sun and by this afternoon they will all be dead."
+
+<p>The old man gazed out as far as he could see and responded, "But, there must be hundreds of miles of beach and thousands of starfish.  You can't possibly rescue all of them.  What difference is throwing a few back going to make anyway?"
+
+<p>The boy held up the starfish he had in his hand and replied, "It's sure going to make a lot of difference to this one!"
+</div>
+                              </td>
+                               </tr>
+
+    </table>
+   </div>    
+
+ <br>
+          <div class="footer">
+{% if not is_granted("ROLE_USER") %}
+<!--              <a href="{{ path('_donor_register') }}"><img alt="Donors" src="/images/hands.jpg" class="inline"></a>
+              <a href="{{ path('_church_list') }}"><img alt="Beneficiaries" src="/images/heart.jpg" class="inline"></a>
+              <a href="{{ path('_message_public_send_admin') }}"><img alt="Verification Specialists" src="/images/verification.jpg" class="inline"></a><br>
+-->
+{% endif %}
+<br><br>
+<div style="text-align:left; width:640px; font-size:.9em">
+              Thank you for your interest in Simple Giving; a non-profit organization devoted to helping those in<br>
+              need.  If you are in need of any information regarding Simple Giving or the website, please contact<br>
+              founder James L. Burton at <strong>(505) 730-4113</strong> or <a href="mailto:JamesBurtonPro@gmail.com">JamesBurtonPro@gmail.com</a>. 
+              Have a great day and<br>God bless!
+
+<div style="text-align:center"><p>Content copyright 2013. SIMPLE-GIVING.ORG. All rights reserved.</div>
+</div>
+          </div>
+      </div>
+{% endblock %}

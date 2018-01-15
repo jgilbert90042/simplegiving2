@@ -1,0 +1,30 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<br>
+Donors<br>
+<br>
+<table class=messages>
+  <tr> 
+    <th class=messages>Name</th>
+    <th class=messages>Email</th>
+    <th class=messages>Phone</th>
+    <th class=messages>Fax</th>
+    <th class=messages>Church</th>
+    <th class=messages>Donations</th>
+    <th class=messages></th>
+  </tr>
+{% for donor in donors %}
+<tr>
+  <td class=messages>{{ donor.firstName }} {{donor.lastName }}</td>
+  <td class=messages>{{ donor.user.email }}</td>
+  <td class=messages>{{ donor.phone }}</td>
+  <td class=messages>{{ donor.fax }}</td>
+  <td class=messages>{{ donor.church }}</td>
+  <td class=messages><a href="{{ path('_funds_list', {'targetId': donor.user.id}) }}">List</a></td>
+  <td class=messages><a href="{{ path('_vs_review_messages_list', {'userId': donor.user.id}) }}">Messages</a></td>
+{% endfor %}
+</tr>
+</table>
+{% endblock %}

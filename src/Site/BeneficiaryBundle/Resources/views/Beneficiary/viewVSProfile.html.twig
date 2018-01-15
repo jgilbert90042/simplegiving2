@@ -1,0 +1,22 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<table class=messages>
+<tr>
+<td colspan=2 class=messages>{{ beneficiary.verifier.firstName }} {{ beneficiary.verifier.lastName }}</td></tr>
+<tr><td colspan=2 class=messages><a href="{{ path('_message_send',
+{'targetId': beneficiary.verifier.user.id}) }}">Message</a>
+</td></tr>
+<tr><td class=messages>Church</td><td class=messages><a href="{{ path('_church_view', {'churchId': beneficiary.verifier.church.id}) }}">{{ beneficiary.verifier.church.name }}</a></td></tr>
+{% if beneficiary.verifier.position %}
+<tr><td class=messages>Position</td><td class=messages>{{ beneficiary.verifier.position }}</td></tr>
+{% endif %}
+{% if beneficiary.verifier.phone %}
+<tr><td class=messages>Phone</td><td class=messages>{{ beneficiary.verifier.phone }}</td></tr>
+{% endif %}
+{% if beneficiary.verifier.fax %}
+<tr><td class=messages>Fax</td><td class=messages>{{ beneficiary.verifier.fax }}</td></tr>
+{% endif %}
+</table>
+<br>
+{% endblock %}

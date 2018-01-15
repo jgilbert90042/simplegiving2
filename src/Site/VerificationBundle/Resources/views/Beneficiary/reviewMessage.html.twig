@@ -1,0 +1,30 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br><br>
+<a href="{{ returnUrl }}">Back to Message List</a><br>
+{% if user.role == 'ROLE_VERIFICATION' %}
+{% if message.reviewed == 0 %}
+<a href="{{ path('_vs_toggle_review', {'messageId': message.id}) }}">Mark as Reviewed</a>
+{% else %}
+<a href="{{ path('_vs_toggle_review', {'messageId': message.id}) }}">Mark as Unreviewed</a>
+{% endif %}
+{% endif %}
+<br>
+<table class=messages>
+<tr>
+<td class=messages>
+To:</td> <td class=messages>{{ message.user.username }}</td></tr>
+<tr>
+<td class=messages>
+From:</td> <td class=messages>{{ message.sender.username }}</td></tr>
+<tr><td class=messages>Sent:</td><td class=messages>{{ message.sent|date() }}</td></tr>
+<tr><td class=messages>Status:</td><td class=messages>{{ message.status.name }}</td></tr>
+<tr><td class=messages>Subject: </td><td class=messages>{{ message.subject }}</td></tr>
+<tr><td colspan=2 class=messages>Body:<br>
+{{ message.body }}</td></tr></table>
+<a href="{{ path('_vs_block_message', {'messageId': message.id}) }}">Block Message</a> |
+<a href="{{ path('_vs_block_all_messages', {'messageId': message.id}) }}">Block All Messages</a>
+<br>
+<br>
+{% endblock %}

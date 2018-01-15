@@ -1,0 +1,14 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+NEW BENEFICIARY REGISTRATION
+<form action="{{ path('_vs_new_beneficiary') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+<br>
+
+{% endblock %}
+

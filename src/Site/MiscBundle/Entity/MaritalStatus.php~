@@ -1,0 +1,30 @@
+<?php
+
+namespace Site\MiscBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Site\MiscBundle\Entity\MaritalStatus
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class MaritalStatus
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+     private $id;
+
+    /**
+     * @var integer $status
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+}

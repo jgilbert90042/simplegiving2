@@ -1,0 +1,59 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<table class=messages>
+<tr>
+  <td colspan=2 class=messages>{{ church.name }}</td>
+<tr>
+<tr>
+  <td class=messages>Denomination</td>
+  <td class=messages> {{ church.denomination.name }}</td>
+</tr>
+<tr>
+  <td class=messages>Address</td>
+  <td class=messages> {{ church.address }}</td>
+</tr>
+<tr>
+  <td class=messages>City</td>
+  <td class=messages> {{ church.city }}</td>
+</tr>
+<tr>
+  <td class=messages>State</td>
+  <td class=messages> {{ church.state }}</td>
+</tr>
+<tr>
+  <td class=messages>Zip</td>
+  <td class=messages> {{ church.zip }}</td>
+</tr>
+<tr>
+  <td class=messages>Phone</td>
+  <td class=messages> {{ church.phone }}</td>
+</tr>
+{% if church.fax %}
+<tr>
+  <td class=messages>Fax</td>
+  <td class=messages> {{ church.fax }}</td>
+</tr>
+{% endif %}
+{% if church.email %}
+<tr>
+  <td class=messages>Email</td>
+  <td class=messages> {{ church.email }}</td>
+</tr>
+{% endif %}
+{% if church.website %}
+<tr>
+  <td class=messages>Website</td>
+  <td class=messages> {{ church.website }}</td>
+</tr>
+{% endif %}
+
+{% if verifier %}
+<tr>
+  <td colspan=2 class=messages><a href="{{ path('_message_public_send', {'targetId': verifier.user.id}) }}">Message Verification Specialist</a></td>
+</tr>
+{% endif %}
+</table>
+<br>
+<br>
+{% endblock %}

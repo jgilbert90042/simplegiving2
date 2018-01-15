@@ -1,0 +1,75 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+{% if app.request.attributes.get('_route') == '_message_list' %}
+Inbox
+{% else %}
+Deleted Messages
+{% endif %}
+<br><br>
+<table class=messages>
+  <tr>
+    <th class=messages>Sender</th>
+    <th class=messages>Status</th>
+    <th class=messages>Subject</th>
+    <th class=messages>Sent</th>
+    <th class=messages></th>
+    <th class=messages></th>
+  <tr>
+{% for m in messages %}
+  <tr>
+{% if m.message.sender %}
+    <td class=messages>
+    {% if m.message.status.name == 'Unread' %}<strong>{% endif %}
+    {{ m.entity.FirstName }}
+    {% if m.message.status.name == 'Unread' %}</strong>{% endif %}
+    </td>
+{% else %}
+    <td class=messages>
+        {% if m.message.status.name == 'Unread' %}<strong>{% endif %}
+        Public User
+        {% if m.message.status.name == 'Unread' %}</strong>{% endif %}
+    </td>
+{% endif %}
+    <td class=messages>
+      {% if m.message.status.name == 'Unread' %}<strong>{% endif %}
+      {{ m.message.status.name }}
+      {% if m.message.status.name == 'Unread' %}</strong>{% endif %}
+    </td>
+    <td class=messages>
+        {% if m.message.status.name == 'Unread' %}<strong>{% endif %}
+        {{ m.message.subject }}
+        {% if m.message.status.name == 'Unread' %}</strong>{% endif %}
+    </td>
+    <td class=messages>
+        {% if m.message.status.name == 'Unread' %}<strong>{% endif %}
+        {{ m.message.sent|date() }}
+        {% if m.message.status.name == 'Unread' %}</strong>{% endif %}
+    </td>
+    <td class=messages>
+        {% if m.message.status.name == 'Unread' %}<strong>{% endif %}
+        <a href="{{ path('_message_read', 
+        {'messageId': m.message.id}) }}">Read</a>
+        {% if m.message.status.name == 'Unread' %}</strong>{% endif %}
+    </td>
+    <td class=messages>
+        {% if m.message.status.name == 'Unread' %}<strong>{% endif %}
+{% if m.message.status.name != 'Deleted' %}
+<a href="{{ path('_message_delete', {'messageId': m.message.id}) }}">Delete</a>
+{% else %}
+<a href="{{ path('_message_restore', {'messageId': m.message.id}) }}">Restore</a>
+{% endif %}
+        {% if m.message.status.name == 'Unread' %}</strong>{% endif %}
+    </td>
+  </tr>
+{% endfor %}
+</table>
+<br>
+{% if app.request.attributes.get('_route') == '_message_list' %}
+<a href="{{ path('_message_list_deleted') }}">View deleted messages</a>
+{% else %}
+<a href="{{ path('_message_list') }}">Back to Inbox</a>
+{% endif %}
+<br>
+{% endblock %}

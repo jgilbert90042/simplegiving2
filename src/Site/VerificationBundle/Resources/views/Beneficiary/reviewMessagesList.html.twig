@@ -1,0 +1,56 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+Review Messages for {{ beneficiary.firstName }} {{ beneficiary.lastName }}
+<br><br>
+<table class=messages>
+  <tr>
+    <th class=messages>Recipient</th>
+    <th class=messages>Sender</th>
+    <th class=messages>Status</th>
+    <th class=messages>Subject</th>
+    <th class=messages>Sent</th>
+    <th class=messages></th>
+  <tr>
+{% for message in messages %}
+  <tr>
+    <td class=messages>
+    {% if message.reviewed == 0 %}<strong>{% endif %}
+    {{ message.user.username }}
+    {% if message.reviewed == 0 %}</strong>{% endif %}
+    </td>
+    <td class=messages>
+    {% if message.reviewed == 0 %}<strong>{% endif %}
+    {{ message.sender.username }}
+    {% if message.reviewed == 0 %}</strong>{% endif %}
+    </td>
+    <td class=messages>
+      {% if message.reviewed == 0 %}<strong>{% endif %}
+      {{ message.status.name }}
+      {% if message.reviewed == 0 %}</strong>{% endif %}
+    </td>
+    <td class=messages>
+        {% if message.reviewed == 0 %}<strong>{% endif %}
+        {{ message.subject }}
+        {% if message.reviewed == 0 %}</strong>{% endif %}
+    </td>
+    <td class=messages>
+        {% if message.reviewed == 0 %}<strong>{% endif %}
+        {{ message.sent|date() }}
+        {% if message.reviewed == 0 %}</strong>{% endif %}
+    </td>
+    <td class=messages>
+        {% if message.reviewed == 0 %}<strong>{% endif %}
+        <a href="{{ path('_vs_review_message', 
+        {'messageId': message.id}) }}">Review</a>
+        {% if message.reviewed == 0 %}</strong>{% endif %}
+    </td>
+  </tr>
+{% endfor %}
+</table>
+<br>
+{% if user.role == 'ROLE_VERIFICATION' %}
+<a href="{{ path('_vs_list_beneficiaries') }}">View Beneficiaries</a>
+{% endif %}
+{% endblock %}

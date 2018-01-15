@@ -1,0 +1,14 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+VERIFICATION CONTENT
+<form action="{{ path('_verification_register_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+<br>
+
+{% endblock %}
+

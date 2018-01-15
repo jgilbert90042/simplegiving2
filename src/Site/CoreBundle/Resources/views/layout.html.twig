@@ -1,0 +1,70 @@
+{% extends  '::base.html.twig' %}
+{% block title %}
+Simple Giving
+{% endblock %}
+
+{% block stylesheets %}
+ <link href="/css/style.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block header %}
+       <div class="main">
+           <div class="header">
+               <table class="header">
+                   <tr>
+                       <td style="vertical-align:top"><a href="{{ path('_index') }}"><img alt="Simple Giving Logo" style="display:block" src="/images/logo.jpg"></a></td>
+                       <td>
+                           <table class="nav">
+                               <tr>
+                               <td class="top_quote"><strong>James 1:27</strong> - Religion that God our Father accepts as pure and faultless is this: to look after orphans and widows in their distress and to keep oneself from being polluted by the world.</td>
+                                   <td class="right_top">
+{% if is_granted("ROLE_USER") %}
+                                       <a href="{{ path('_secure') }}">Home</a> | 
+                                       <a href="{{ path('_message_list') }}">
+
+{% if unreadMessages %}
+<strong>Inbox ({{ unreadMessages }})</strong>
+{% else %}
+Inbox
+{% endif %}
+</a> | 
+                                       <a href="{{ path('logout') }}">Log out</a>
+{% else %}
+                                       <a href="{{ path('login') }}">Log in</a>
+{% endif %}
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td colspan="2" class="right_bottom">
+                                        <a href="{{ path('_business') }}">Business Proposal</a> | <a href="{{ path('_vision') }}">Vision</a> | <a href="{{ path('_contact') }}">Contact</a>
+                                   </td>
+                               </tr>
+                           </table>
+                       </td>
+                   </tr>
+               </table>
+          </div>    
+
+{% endblock %}
+
+{% block content %}
+Put your content here.
+{% endblock %}
+
+{%block footer %}
+          <div class="footer">
+{% if not is_granted("ROLE_USER") %}
+              <a href="{{ path('_public_donor') }}"><img alt="Donors" src="/images/hands.jpg" class="inline"></a>
+              <a href="{{ path('_public_beneficiary') }}"><img alt="Beneficiaries" src="/images/heart.jpg" class="inline"></a>
+              <a href="{{ path('_public_vs') }}"><img alt="Verification Specialists" src="/images/verification.jpg" class="inline"></a><br>
+{% endif %}
+<br><br>
+<div style="text-align:left; width:640px; font-size:.9em">
+              Thank you for your interest in Simple Giving; a non-profit organization devoted to helping those in<br>
+              need.  If you are in need of any information regarding Simple Giving or the website, please contact<br>
+              founder James L. Burton at <strong>(505) 730-4113</strong> or <a href="mailto:JamesBurtonPro@gmail.com">JamesBurtonPro@gmail.com</a>. 
+              Have a great day and<br>God bless!
+</div>
+          </div>
+      </div>
+{% endblock %}

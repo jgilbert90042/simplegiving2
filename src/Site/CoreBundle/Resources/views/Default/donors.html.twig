@@ -1,0 +1,36 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<div class="content_header">
+<h2>DONORS</h2>
+<a href="{{ path('_donor_register')  }}">Register as a Donor</a>
+</div>
+<p>In today's morally and ethically bankrupt society, in a world filled with school shootings, cultural depravity and personal strife, people are feeling more and more devoted to trying to find a solution.  Men and women, although at times misguided, are capable of incredible acts of kindness and community.  Simple Giving gives these people the opportunity to help a family or individual in need, directly, without having to worry about if they are making a difference because they are able to see, relate to, and witness each and every unique bio posted by the beneficiaries that they chose to help. 
+
+<p>To become a Donor, one must simply go to the Simple Giving website, once the social network is available, and click on the <a href="{{ path('_donor_register')  }}">Register as a Donor</a> option.  Once clicked, the Donor will go through a registration process entailing him or her to give their:
+
+<ul>
+<li><strong>Full Name</strong>
+<li><strong>Email Address</strong>
+<li><strong>Church Affiliation</strong> ("No Church" is an option)
+<li><strong>Personal Phone Number</strong> (Sent securely to Verification Specialist, for verification of payment received)
+</ul>
+
+<p>Once an account is made, the Donor will then set a number of preferences that can only be modified once every 30 days.  The preferences include:
+
+<ul>
+<li><strong>Urgency</strong> (Scaled 1 to 5, determined by the church)
+<li><strong>Number and age of children in the household</strong>
+<li><strong>Amount of funds needed</strong> 
+<li><strong>What category the funds are needed for</strong> 
+<li><strong>Location</strong> (determined only by "Nearby County", "Specific County" or "Anywhere")
+</ul>
+
+<p>After the Donor selects these preferences, he is then able to view the 10 different bio’s of families or individuals who are in need of aid, reading a specific, verified story that is only omitting personal, identifying information. 
+
+<p>After the Donor selects a unique story and family to help, he then, via PayPal, sends the funds to the Beneficiaries church account specifically set aside for Simple Giving transactions.  The Donor receives verification that his funds have been successfully delivered once the Verification Specialists see’s that the funds have been deposited, and again when the Beneficiary sends a personalized email thanking the Donor for their much needed aid.
+
+{% endblock %}
+
+

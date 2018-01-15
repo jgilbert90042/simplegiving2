@@ -1,0 +1,9 @@
+<form>
+<select name="city" onchange=getChurches()>
+<option value="" selected></option><br>
+{% for city, count in cities %}
+<option value="{{ city }}">{{ city }} ({{ count}})</option><br>
+{% endfor %}
+</select>
+</form>
+<br>

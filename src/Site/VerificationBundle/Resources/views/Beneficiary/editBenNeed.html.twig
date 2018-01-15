@@ -1,0 +1,14 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+EDIT NEED INFORMATION
+<form action="{{ path('_vs_edit_need_ben', {'beneficiaryId': beneficiary.id}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+<br>
+
+{% endblock %}
+

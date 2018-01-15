@@ -1,0 +1,26 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<table class=messages>
+<tr>
+<td colspan=2 class=messages>{{ beneficiary.firstName }}</td></tr>
+<tr><td colspan=2 class=messages><a href="{{ path('_message_send',
+{'targetId': beneficiary.user.id}) }}">Message</a>
+</td></tr>
+<tr><td colspan=2 class=messages><a href="{{ path('_message_send',
+{'targetId': beneficiary.verifier.user.id}) 
+}}">Message Verification Specialist</a>
+</td></tr>
+<tr><td class=messages>City</td><td class=messages>{{ beneficiary.city }}</td></tr>
+<tr><td class=messages>State</td><td class=messages>{{ beneficiary.state }}</td></tr>
+<tr><td class=messages>Marital Status</td><td class=messages>{{ beneficiary.maritalStatus.status }}</td></tr>
+<tr><td class=messages>Dependants</td><td class=messages>{{ beneficiary.dependants }}</td></tr>
+<tr><td class=messages>Urgency</td><td class=messages>{{ beneficiary.needUrgency }}</td></tr>
+<tr><td class=messages>Requested Donation</td><td class=messages>${{ beneficiary.need }}</td></tr>
+<tr><td class=messages>Last Updated</td><td class=messages>{{ beneficiary.updated|date() }}</td></tr>
+<tr><td colspan=2 class=messages>
+{{ beneficiary.needDesc }}</td></tr></table>
+<span style="text-align:center">
+{% include "SiteFundingBundle:Funding:donateButton.html.twig" %}</span><br>
+<br>
+{% endblock %}

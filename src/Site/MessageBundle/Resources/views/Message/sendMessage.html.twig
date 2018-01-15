@@ -1,0 +1,14 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+
+Message to {{ entity.firstName }}<br>
+<form action="{{ path('_message_send', {'targetId': target.id}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+
+
+{% endblock %}
+

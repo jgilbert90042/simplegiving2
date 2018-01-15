@@ -1,0 +1,42 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<br>
+Beneficiaries<br>
+<br>
+<table class=messages>
+  <tr>
+    <th class=messages>Name</th>
+    <th class=messages>SSN</th>
+    <th class=messages>Email</th>
+    <th class=messages>Phone</th>
+    <th class=messages>Need Urgency</th>
+    <th class=messages>Need</th>
+    <th class=messages>Verification Specialist</th>
+    <th class=messages>Donations</th>
+    <th class=messages></th>
+  </tr>
+{% for beneficiary in beneficiaries %}
+<tr>
+  <td class=messages><a href="{{ path('_a_b_view', {'beneficiaryId': beneficiary.id}) }}">{{ beneficiary.firstName }} {{beneficiary.lastName }}</a></td>
+  <td class=messages>{{ beneficiary.ssn }}</td>
+  <td class=messages>{{ beneficiary.user.email }}</td>
+  <td class=messages>{{ beneficiary.phone }}</td>
+  <td class=messages>{{ beneficiary.needUrgency }}</td>
+  <td class=messages>${{ beneficiary.need }}</td>
+  <td class=messages><a href="{{ path('_a_vs_view', {'verifierId': beneficiary.verifier.id}) }}">
+  {{ beneficiary.verifier.firstName }} {{beneficiary.verifier.lastName }}</a></td>
+  <td class=messages><a href="{{ path('_funds_list', {'targetId': beneficiary.user.id}) }}">List</a></td>
+  <td class=messages> <a href="{{ path('_a_b_searchable', {'beneficiaryId': beneficiary.id}) }}">
+{% if beneficiary.searchable %}
+Searchable
+{% else %}
+Unsearchable
+{% endif %}
+</a></td>
+</tr>
+{% endfor %}
+</table>
+<br>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<br>
+BENEFICIARY SECTION
+<br>
+
+<a href="{{ path('_message_list') }}">
+
+{% if unreadMessages %}
+<strong>Inbox ({{ unreadMessages }})</strong>
+{% else %}
+Inbox
+{% endif %}
+</a>
+<br>
+<a href="{{ path('_b_view_vs') }}">Verification Specialist Info</a><br>
+<a href="{{ path('_message_send',
+{'targetId': beneficiary.verifier.user.id}) }}">Message Your Verification Specialist</a><br>
+<a href="{{ path('_funds_list', {'targetId': user.id}) }}">View Donations</a>
+{% endblock %}
+
+

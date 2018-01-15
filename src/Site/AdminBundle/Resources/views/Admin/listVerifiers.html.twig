@@ -1,0 +1,38 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<br>
+Verification Specialists<br>
+<br>
+<a href="{{ path('_a_new_vs') }}">Add Verification Specialist</a><br>
+<br>
+<table class=messages>
+  <tr>
+    <th class=messages>Name</th>
+    <th class=messages>Church</th>
+    <th class=messages>Position</th>
+    <th class=messages>Phone</th>
+    <th class=messages>Donations</th>
+    <th class=messages></th>
+  </tr>
+{% for verifier in verifiers %}
+<tr>
+  <td class=messages><a href="{{ path('_a_vs_view', {'verifierId': verifier.id}) }}">{{ verifier.firstName }} {{verifier.lastName }}</a></td>
+  <td class=messages>{{ verifier.church.name }}</td>
+  <td class=messages>{{ verifier.position }}</td>
+  <td class=messages>{{ verifier.phone }}</td>
+  <td class=messages><a href="{{ path('_funds_list', {'targetId': verifier.user.id}) }}">List</a></td>
+  <td class=messages> <a href="{{ path('_a_vs_activate', {'verifierId': verifier.id}) }}">
+{% if verifier.activated %}
+Active
+{% else %}
+Inactive
+{% endif %}
+</a></td>
+</tr>
+{% endfor %}
+</table>
+<br>
+<a href="{{ path('_a_new_vs') }}">Add Verification Specialist</a>
+{% endblock %}

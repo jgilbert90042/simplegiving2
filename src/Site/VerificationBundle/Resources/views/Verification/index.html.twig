@@ -1,0 +1,16 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<br>
+<a href="{{ path('_message_list') }}">Inbox</a><br>
+<a href="{{ path('_vs_edit') }}">Edit Profile</a><br>
+<a href="{{ path('_vs_ppedit') }}">Edit Paypal Info</a><br>
+<a href="{{ path('_vs_new_beneficiary') }}">Add Beneficiary</a><br>
+<a href="{{ path('_vs_list_beneficiaries') }}">View Beneficiaries</a><br>
+<a href="{{ path('_vs_list_donations') }}">View Donations</a>
+<br>
+<br>
+{% endblock %}
+
+

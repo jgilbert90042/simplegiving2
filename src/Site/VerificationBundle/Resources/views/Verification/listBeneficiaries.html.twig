@@ -1,0 +1,35 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+<br>
+<br>
+BENEFICIARIES<br>
+<br>
+{% for b in beneficiaries %}
+<a href="{{ path('_b_view', {'beneficiaryId': b.beneficiary.id}) }}">{{b.beneficiary.user.username}}</a> |
+<a href="{{ path('_vs_edit_pers_ben', 
+  {'beneficiaryId': b.beneficiary.id}) }}">Edit Personal Info</a> | 
+<a href="{{ path('_vs_edit_need_ben', 
+  {'beneficiaryId': b.beneficiary.id}) }}">Edit Need Info</a> |
+ {% if b.messageCount %}
+ <strong>
+ {% endif %}
+<a href="{{ path('_vs_review_messages_list', {'userId': b.beneficiary.user.id}) }}"> Review Messages ({{ b.messageCount }})<a> 
+{% if b.messageCount %}
+ </strong>
+ {% endif %}|
+<a href="{{ path('_funds_list', {'targetId': b.beneficiary.user.id}) }}">Donations</a> | 
+<a href="{{ path('_vs_toggle_search_ben', {'beneficiaryId': b.beneficiary.id}) }}">
+{% if b.beneficiary.searchable %}
+Searchable
+{% else %}
+Unsearchable
+{% endif %}
+</a>
+<br>
+{% endfor %}
+<br>
+<br>
+{% endblock %}
+
+

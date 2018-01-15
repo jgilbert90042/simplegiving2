@@ -1,0 +1,96 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block ajax %}
+<script type="text/javascript">
+function loadXMLDoc_test()
+{
+document.getElementById("myDiv").innerHTML="hello world";
+
+}
+
+function getChurches()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("churches").innerHTML=xmlhttp.responseText;
+    }
+  }
+
+xmlhttp.open("GET","{{ path('_church_by_city') }}?t=" + Math.random() 
++ "&city=" + escape(document.getElementById('cities').value, true));
+xmlhttp.send();
+}
+
+function getCities()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+//    document.getElementById("cities").innerHTML=xmlhttp.responseText;
+        var json = eval('('+ xmlhttp.responseText +')');
+    var sel = document.getElementById('cities');
+    sel.options[0].innerHTML = 'Select a City';    
+    for (var count = sel.options.length - 1; count > 0; count--)
+    {
+        sel.options[count] = null;
+    }
+    for (var key in json)
+    {   
+        var opt = document.createElement('option');
+        var o = sel.appendChild(opt.cloneNode(true));
+        o.value = key;
+        o.innerHTML = key + ' (' + json[key] + ')'
+//        o.appendChild(document.creatTextNode());
+//            o.value = json[i].city;
+ //           o.innerHTML = json[i].city + ' (' + json[i].count + ')';
+        }
+    }
+  }
+
+xmlhttp.open("GET","{{ path('_church_cities') }}?t=" + Math.random() 
++ "&stateAbbr=" + document.forms[0].state.value, true);
+xmlhttp.send();
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<br>
+CHURCH DIRECTORY<br>
+<form name="State">
+<select name="state" onchange=getCities()>
+<option value="" selected>Select a State</option><br>
+{% for state in states %}
+<option value="{{ state.abbr }}">{{ state.name }}</option><br>
+{% endfor %}
+</select>
+</form>
+<select id="cities" name="cities" onchange=getChurches()>
+<option value="" selected>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+</select>
+<br><br><br>
+<div id="churches"></div>
+{% endblock %}

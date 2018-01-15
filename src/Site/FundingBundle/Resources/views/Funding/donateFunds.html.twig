@@ -1,0 +1,15 @@
+{% extends "SiteCoreBundle::layout_nocms.html.twig" %}
+
+{% block content %}
+
+Donate funds to {{ target.username }}<br>
+<form action="{{ path('_funds_donate', {'targetId': target.id}) }}" method="post
+" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+
+
+{% endblock %}
+
